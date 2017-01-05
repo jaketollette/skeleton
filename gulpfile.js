@@ -37,7 +37,7 @@
     gulp.task("minifyScripts", ["transpileTs", "concatScripts"], function(){
         return gulp.src("src/js/*.js")
         .pipe(uglify())
-        .pipe(gulp.dest("dist/js"));
+        .pipe(gulp.dest("src/js"));
     });
 
     // Compile SASS
@@ -65,7 +65,7 @@
     gulp.task("minifyCSS", ["concatCss"], function(){
         return gulp.src("src/css/*.css")
         .pipe(cleanCSS({compatibility: "ie9"}))
-        .pipe(gulp.dest("dist/css"));
+        .pipe(gulp.dest("src/css"));
     });
 
     // Watches SCSS, JS, and TS for changes and
