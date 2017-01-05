@@ -6,7 +6,13 @@
 
 
 // Headlines
+%headline-primary {
+  font-size: golden-ratio($base-font-size, +3);
+}
 
+%headline-secondary {
+  font-size: golden-ratio($base-font-size, +2);
+}
 
 // Buttons
 

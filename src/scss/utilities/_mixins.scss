@@ -5,10 +5,11 @@
 // BEM selectors
 
 @mixin e($element) {
-	&__#{$element} {
+  &__#{$element} {
     @content;
   }
 }
+
 @mixin m($modifier) {
   &--#{$modifier} {
     @content;
@@ -18,9 +19,9 @@
 // Generate modifier color classes
 
 @mixin bg-colors($map) {
-	@each $theme, $color in $map {
-		&--#{$theme} {
-			background-color: $color;
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      background-color: $color;
 		}
 	}
 }
@@ -31,25 +32,29 @@
 	$el,
 	$el-w: null,
 	$el-h: null) {
-	@if $el == "before" or $el == "after" {
-	  &:#{$el} {
-		  @extend %pseudos;
-		  width: $el-w;
-	  	height: $el-h;
-	    @content;
-	  }
-	}
-	@else {
-    @error "`#{$el}` is not a valid pseudo-element.";
+  @if $el == 'before' or $el == 'after' {
+    &:#{$el} {
+  	  @extend %pseudos;
+    	height: $el-h;
+      width: $el-w;
+      @content;
+    }
+  } @else {
+    @error '`#{$el}` is not a valid pseudo-element.';
 	}
 }
 
 // Image replacement
 
 @mixin img-replace($img, $w, $h, $disp: block) {
-	background-image: url('#{$path--rel}/#{$img}');
-	background-repeat: no-repeat;
-	width: $w;
-	height: $h;
-	display: $disp;
+  background-image: url('#{$path--rel}/#{$img}');
+  background-repeat: no-repeat;
+  width: $w;
+  height: $h;
+  display: $disp;
+}
+
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter(); }
+  &:nth-child(#{$nth}+1) { clear: none; }
 }

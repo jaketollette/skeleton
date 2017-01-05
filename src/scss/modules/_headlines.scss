@@ -1,3 +1,13 @@
 // ==========================================================================
 // Headlines
 // ==========================================================================
+.headline {
+
+  @include m(primary) {
+    @extend %headline-primary;
+  }
+
+  @include m(secondary) {
+    @extend %headline-secondary;
+  }
+}

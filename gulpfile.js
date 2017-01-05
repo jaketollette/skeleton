@@ -24,30 +24,29 @@
     // Concat All JS (Order Matters!)
     gulp.task("concatScripts", function(){
         return gulp.src([
-            "src/js/libs/*.js",
-            "src/js/main.js"
+            "src/js/libs/zepto.js",
+            "src/js/libs/move.js"
         ])
         .pipe(maps.init())
-        .pipe(concat("app.js"))
+        .pipe(concat("libs.js"))
         .pipe(maps.write("./"))
-        .pipe(gulp.dest("dist/js"));
+        .pipe(gulp.dest("src/js"));
     });
 
     // Minify JS. This will Transpile TS and Concat JS first
-    gulp.task("minifyScripts", ["transpileJS", "concatScripts"], function(){
-        return gulp.src("dist/js/app.js")
+    gulp.task("minifyScripts", ["transpileTs", "concatScripts"], function(){
+        return gulp.src("src/js/*.js")
         .pipe(uglify())
-        .pipe(rename("app.min.js"))
         .pipe(gulp.dest("dist/js"));
     });
 
     // Compile SASS
     gulp.task("compileSass", function(){
-        return gulp.src("scss/style.scss")
+        return gulp.src("src/scss/style.scss")
         .pipe(maps.init())
         .pipe(sass())
         .pipe(maps.write("./"))
-        .pipe(gulp.dest("dist/css"));
+        .pipe(gulp.dest("src/css"));
     });
 
     // Concat all CSS (Order Matters!)
@@ -58,7 +57,7 @@
             "src/css/style.css"
         ])
         .pipe(concat("style.css"))
-        .pipe(gulp.dest("dist/css"));
+        .pipe(gulp.dest("src/css"));
     });
 
     // Minify CSS. Calls Concat first. Which also compiles SASS.
@@ -86,7 +85,7 @@
     // Builds the project. Compiles Sass, Transpiles TS, Concats Scripts and CSS
     // Creates "dist" directory and copies files ready for production
     gulp.task("build", ["minifyScripts", "minifyCSS"], function(){
-        return gulp.src(["src/css/**/*.css", "src/js/**/*.js", "src/images/**"], { base: './'})
+        return gulp.src(["src/css/**/*.css", "src/js/**/*.js", "src/images/**", "src/*.+(html|txt|config)"], { base: 'src'})
         .pipe(gulp.dest("dist"));
     });
 
