@@ -3,11 +3,24 @@
 // ==========================================================================
 .headline {
 
-  @include m(primary) {
+  &-primary {
     @extend %headline-primary;
+    margin-bottom: em(70, 42);
+
+    @include m(grouped) {
+      @extend %headline-primary;
+      margin-bottom: 0;
+    }
   }
 
-  @include m(secondary) {
+  &-secondary {
     @extend %headline-secondary;
+    margin-bottom: em(22, 24);
+
+    @include m(grouped) {
+      @extend %headline-secondary;
+      margin-bottom: em(54, 24);
+      margin-top: em(10, 24);
+    }
   }
 }

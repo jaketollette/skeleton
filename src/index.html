@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Skeleton App</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="container--color-primary">
-        <h2 class="headline--primary" style="opacity: 0;">It's working</h2>
-        <h3 class="headline--secondary">This is a smaller heading</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ex magni rerum beatae laboriosam
-            natus fugit, ducimus sint odit? Animi quaerat laboriosam architecto fugiat accusamus nemo aliquid
-            repellat! Ea, reiciendis!</p>
-    </div>
-    <script src="js/libs.js"></script>
-    <script src="js/libs/require.js" data-main="js/main"></script>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Skeleton App</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h4>Typography</h4>
+            <h1 class="headline-primary--grouped">Take a look at this amazing headline</h1>
+            <h2 class="headline-secondary--grouped">Don't forget about the subtitle</h2>
+            <p>This is a typical paragraph for the UI Kit. <a href="#">Here is what a link might look like</a>. The typical font family for this kit is Helvetica Neue. This kit is intended for clean and refreshing web layouts. No jazz hands here, just the
+                essentials to make dreams come true, with minimal clean web design. The kit comes fully equipped with everything from full responsive media styling to buttons to form fields. <em>I enjoy using italics as well from time to time</em>. Fell
+                free to create the most amazing designs ever with this kit. I truly hope you enjoy not only the kit but this amazing paragraph as well. :)</p>
+            <blockquote>You know what really gets me going? A really nice set of block quotes. That's right, block quotes that say, "Hey, I'm an article you want to read and nurture."</blockquote>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+            <ul>
+                <li>List Item 1</li>
+                <li>List Item 2</li>
+                <li>List Item 3</li>
+                <li>List Item 4</li>
+                <li>List Item 5</li>
+            </ul>
+
+            <h4 >Buttons</h4>
+          <a class="btn--default" href="#" onclick="return false;" >Button Default</a>
+          <a class="btn--success" href="#" onclick="return false;" >Button Success</a>
+          <a class="btn--error" href="#" onclick="return false;" >Button Error</a>
+          <a class="btn--warning" href="#" onclick="return false;" >Button Warning</a>
+          <a class="btn--info" href="#" onclick="return false;" >Button Info</a>
+          <a class="btn--inverted" href="#" onclick="return false;" >Button Inverted</a>
+
+          <h4 >Form Elements</h4>
+      <form >
+        <label class="form__label--hidden" for="name">Name:</label>
+        <input class="form__input" type="text" id="name" placeholder="Name">
+
+        <label class="form__label--hidden" for="email">Email:</label>
+        <input class="form__input" type="email" id="email" placeholder="email@website.com">
+
+        <label class="form__label--hidden" for="select">Message:</label>
+        <select class="form__input" id="select" >
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+        </select>
+
+        <label class="form__label--hidden" for="msg">Message:</label>
+        <textarea class="form__input" id="msg" placeholder="Message..." rows="6"></textarea>
+
+        <input class="btn--default" type="submit" value="Submit">
+        <input class="btn--warning" type="reset" value="Reset">
+      </form>
+
+      <h4 >Media</h4>
+      <img src="img/sample.jpg" alt="sample image" >
+      <img class="img--wrap" src="img/sample.jpg" alt="sample img" >
+      <img class="img--avatar" src="img/avatar.png" alt="avatar" >
+
+      <h4  >Footer</h4>
+      <footer class="panel--padded--centered" role="contentinfo"  ><a class="site-logo" href="#"  onclick="return false;"> <strong class="srt">Skeleton - UI Toolkit</strong> </a>
+        <p >A simple UI Kit for everyone to share and enjoy.</p>
+      </footer>
+
+        </div>
+        <script src="js/libs.js"></script>
+        <script src="js/libs/require.js" data-main="js/main"></script>
+    </body>
+
 </html>

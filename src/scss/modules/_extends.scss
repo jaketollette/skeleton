@@ -7,14 +7,41 @@
 
 // Headlines
 %headline-primary {
-  font-size: golden-ratio($base-font-size, +3);
+  color: palette(grey, x-dark);
+  font-size: modular-scale(4, 1rem, $type-scale);
+  font-weight: $font-weight--light;
+  margin-top: 0;
 }
 
 %headline-secondary {
-  font-size: golden-ratio($base-font-size, +2);
+  color: palette(grey, light);
+  font-family: $font-family--secondary;
+  font-size: modular-scale(2, 1rem, $type-scale);
+  font-weight: $font-weight--thin;
+  letter-spacing: $letter-space;
 }
 
 // Buttons
+%btn {
+  border: 0;
+  border-radius: $br--default;
+  color: $white;
+  display: block;
+  font-size: em(14px);
+  font-weight: $font-weight--medium;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: opacity $trns-duration;
 
+  &:hover {
+    color: $white;
+    opacity: .75;
+    text-shadow: 1px 1px 1px $color-shadow--text;
+  }
+
+  &:active {
+    opacity: initial;
+  }
+}
 
 // Icons

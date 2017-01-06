@@ -35,6 +35,7 @@ $color-primary: $fountain-blue;
 $color-secondary: $scooter;
 $color-accent: $emerald;
 $color-shadow: rgba($black, .2);
+$color-shadow--text: rgba($black, .5);
 
 // Color Palette Modifiers
 
@@ -57,11 +58,12 @@ $color-palettes: (
 // UI Colors
 
 $ui-colors: (
-	default : $fountain-blue,
-	success : $emerald,
-	error   : $sunglo,
-	warning : $coral,
-	info    : $purple-majesty
+	default: $fountain-blue,
+	success: $emerald,
+	error: $sunglo,
+	warning: $coral,
+	info: $purple-majesty,
+  inverted: invert($fountain-blue)
 );
 
 // Text

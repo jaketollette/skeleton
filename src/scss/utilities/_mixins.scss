@@ -22,6 +22,7 @@
   @each $theme, $color in $map {
     &--#{$theme} {
       background-color: $color;
+      color: lighten($color, 50%);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 (function(){
     "use strict";
+    var appName = "skeleton",
+            devPath = "../../dev/",
+            proPath = "../../production/";
 
     var gulp = require("gulp"),
             concat = require("gulp-concat"),
@@ -9,7 +12,10 @@
             sass = require("gulp-sass"),
             maps = require("gulp-sourcemaps"),
             del = require("del"),
-            ts = require("gulp-typescript");
+            ts = require("gulp-typescript"),
+            syncy = require("syncy"),
+            imagemin = require("gulp-imagemin"),
+            browserSync = require("browser-sync").create();
 
     // Transpile TypeSript
     gulp.task("transpileTs", function(){
@@ -18,7 +24,8 @@
                 noImplicitAny: true,
                 out: "main.js"
             }))
-            .pipe(gulp.dest("src/js"));
+            .pipe(gulp.dest("src/js"))
+            .pipe(browserSync.stream());
     });
 
     // Concat All JS (Order Matters!)
@@ -30,7 +37,8 @@
         .pipe(maps.init())
         .pipe(concat("libs.js"))
         .pipe(maps.write("./"))
-        .pipe(gulp.dest("src/js"));
+        .pipe(gulp.dest("src/js"))
+        .pipe(browserSync.stream());
     });
 
     // Minify JS. This will Transpile TS and Concat JS first
@@ -57,7 +65,8 @@
             "src/css/style.css"
         ])
         .pipe(concat("style.css"))
-        .pipe(gulp.dest("src/css"));
+        .pipe(gulp.dest("src/css"))
+        .pipe(browserSync.stream());
     });
 
     // Minify CSS. Calls Concat first. Which also compiles SASS.
@@ -68,13 +77,26 @@
         .pipe(gulp.dest("src/css"));
     });
 
+    // Compress images
+    gulp.task("minifyImg", function(){
+        return gulp.src("src/img/*")
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/img'));
+    });
+
     // Watches SCSS, JS, and TS for changes and
     // calls Concat for each (Which will build SASS, JS, and TS)
     // Does not minify scripts for development debugging
     gulp.task("watchFiles", function(){
+
+        browserSync.init({
+            server: "./src"
+        });
+
         gulp.watch("src/scss/**/*.scss", ["concatCss"]);
         gulp.watch("src/ts/**/*.ts", ["transpileTs"]);
         gulp.watch("src/js/*.js", ["concatScripts"]);
+        gulp.watch("src/*+(html|asp|php|txt)").on('change', browserSync.reload);
     });
 
     // Cleans up files created by gulp tasks
@@ -84,8 +106,8 @@
 
     // Builds the project. Compiles Sass, Transpiles TS, Concats Scripts and CSS
     // Creates "dist" directory and copies files ready for production
-    gulp.task("build", ["minifyScripts", "minifyCSS"], function(){
-        return gulp.src(["src/css/**/*.css", "src/js/**/*.js", "src/images/**", "src/*.+(html|txt|config)"], { base: 'src'})
+    gulp.task("build", ["minifyScripts", "minifyCSS", "minifyImg"], function(){
+        return gulp.src(["src/css/**/*.css", "src/js/**/*.js", "src/*.+(html|txt|config)"], { base: 'src'})
         .pipe(gulp.dest("dist"));
     });
 
@@ -96,6 +118,36 @@
     // which will remove all gulp created files and build from scratch
     gulp.task("default", ["clean"], function(){
         gulp.start("build");
+    });
+
+    gulp.task("browser-sync", function(){
+        browserSync.init({
+            server: {
+                baseDir: "./"
+            }
+        });
+    });
+
+    // Deploy to develoment server on local disk
+    gulp.task("deployDev", function(){
+        return syncy(['dist/**'], devPath + appName, {verbose: true, base: "dist"})
+        .then(function (){
+            console.log("Done");
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+    });
+
+    // Deploy to develoment server on local disk
+    gulp.task("deployPro", function(){
+        return syncy(['dist/**'], proPath + appName, {verbose: true, base: "dist"})
+        .then(function (){
+            console.log("Done");
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
     });
 
 })();
