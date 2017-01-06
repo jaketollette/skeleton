@@ -1,5 +1,8 @@
 (function(){
     "use strict";
+
+    // Used for deployment path + appName
+    // EX: devPath + appName (../../dev/skeleton)
     var appName = "skeleton",
             devPath = "../../dev/",
             proPath = "../../production/";
